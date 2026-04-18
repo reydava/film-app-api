@@ -7,32 +7,26 @@
             margin:0;
             font-family: Arial;
             color:white;
-            background:black;
+            background:url('{{ $movie['banner'] }}') no-repeat center/cover;
         }
 
-        .banner {
-            height:400px;
-            background-size:cover;
-            background-position:center;
-            display:flex;
-            align-items:end;
-            padding:20px;
-            background-image: linear-gradient(to top, black, transparent),
-                url('{{ $movie["movie_banner"] ?? $movie["image"] }}');
+        .overlay {
+            background:rgba(0,0,0,0.7);
+            min-height:100vh;
+            padding:50px;
         }
 
-        .content {
-            padding:30px;
+        .box {
             display:flex;
+            gap:30px;
         }
 
         img {
-            width:250px;
+            width:300px;
             border-radius:10px;
-            margin-right:20px;
         }
 
-        .desc {
+        .info {
             max-width:600px;
         }
 
@@ -43,19 +37,17 @@
 </head>
 <body>
 
-<div class="banner">
-    <h1>{{ $movie['title'] }}</h1>
-</div>
+<div class="overlay">
+    <a href="/">⬅ Kembali</a>
 
-<div class="content">
-    <img src="{{ $movie['image'] }}">
-    <div class="desc">
-        <h2>{{ $movie['title'] }}</h2>
-        <p>{{ $movie['description'] ?? 'Tidak ada deskripsi' }}</p>
-        <p><b>Tahun:</b> {{ $movie['release_date'] }}</p>
+    <div class="box">
+        <img src="{{ $movie['poster'] }}">
 
-        <br>
-        <a href="/">⬅ Kembali</a>
+        <div class="info">
+            <h1>{{ $movie['title'] }}</h1>
+            <p><b>Tahun:</b> {{ $movie['year'] }}</p>
+            <p>{{ $movie['overview'] }}</p>
+        </div>
     </div>
 </div>
 
